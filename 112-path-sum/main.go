@@ -29,6 +29,7 @@ func dfs(root *TreeNode, targetSum, currSum int) bool {
 		return currSum == targetSum
 	}
 
+	// TODO: Why this doesn't work
 	// if root.Left != nil {
 	// 	return dfs(root.Left, targetSum, currSum)
 	// }
