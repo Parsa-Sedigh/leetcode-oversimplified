@@ -1,4 +1,4 @@
-package pathsum
+package problem112
 
 import "fmt"
 

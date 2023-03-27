@@ -1,4 +1,4 @@
-package first_bad_version
+package problem278
 
 import "fmt"
 

@@ -1,4 +1,4 @@
-package search_insert_position
+package problem35
 
 func searchInsert(nums []int, target int) int {
 	start := 0
