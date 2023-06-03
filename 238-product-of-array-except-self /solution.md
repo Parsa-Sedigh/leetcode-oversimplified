@@ -4,6 +4,8 @@ of all product is basically taking the entire product without that specific elem
 
 ---
 
+[1, 2, 3, 4]
+
 ## First approach
 
 O(n) solution
@@ -16,10 +18,20 @@ If we want to get the product of all except 3, one way we can break it down is g
 get the product of every value after 3 and then to calculate the result in each index, look at the input array. Then look at the
 `index - 1` prefix of the current index and multiply it by the postfix at `index + 1`.
 
-Note: At index 0, since there are no prefix at index - 1 in prefix array, we assume 1 and the same goes for postfix for last index.
+Note: At index 0, since there are no prefix at index `-1` in prefix array, we assume 1 and the same goes for postfix for last index.
 
 We wanna do this for every element in input array but by computing the prefix product for every single element in input array and put it
-in a prefix array and also the postfix product of every single position. We can compute both of these in O(n)
+in a prefix array and also the postfix product of every single position. We can compute both of these in O(n).
+
+So:
+
+input: [1, 2, 3, 4]
+
+prefix: [1, 2, 6, 24]
+
+postfix: [24, 24, 12, 4]
+
+output: [24, 12, 8, 6]
 
 ---
 
