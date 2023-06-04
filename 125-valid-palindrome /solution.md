@@ -1,0 +1,1 @@
+`ignoring cases` means ignore upper and lower cases.
