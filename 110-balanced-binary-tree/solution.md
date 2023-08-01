@@ -34,6 +34,13 @@ but we wanna implement it by returning 2 values. So we're gonna write a nested r
 
 The line below means: is the left subtree is balanced and the right subtree is balanced and also the current subtree starting from the current
 root is balanced. So all three have to be true in order for the current subtree to be balanced.
+
+**At each step, the left subtree and right subtree and the subtree starting from the current root should be balanced.**
+
 ```python
 balanced = left[0] and right[0] and abs(left[1] - right[1]) <= 1
 ```
+Why we said: `left[0] and right[0]`, because if either of the left or right subtrees ever return False in the first return value, then
+we know for sure that the entire tree is not balanced.
+
+When we said: `abs(left[1] - right[1]) <= 1`, it means is from the current root subtree, are we balanced?
