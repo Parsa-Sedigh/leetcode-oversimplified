@@ -1,0 +1,47 @@
+from collections import deque
+from typing import List
+
+
+class Solution:
+    def numIslands(self, grid: List[List[str]]) -> int:
+        # If we're given an empty grid, we don't want to run our algo at all. There aren't any islands in that case.
+        if not grid: return 0
+
+        # Get the dimensions of the grid(rows and cols)
+        rows, cols = len(grid), len(grid[0])
+        visited = set() # We could use a 2-d grid as our visited as well
+        islands = 0
+
+        def bfs(r, c):
+            q = deque()
+            visited.add((r, c))
+            q.append((r, c))
+
+            # while queue is not empty, we're gonna be expanding our island(if we have a 1 and other conditions are true)
+            while q:
+                row, col = q.popleft()
+
+                # We want to check the adjacent positions of the (row, col) position that we just popped. There are 4 directions that we can go
+                directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
+
+                for dr, dc in directions:
+                    r, c = row + dr, col + dc
+                    if (r in range(rows) and
+                        c in range(cols) and
+                        grid[r][c] == "1" and
+                        (r, c) not in visited):
+                        # add this position to queue as well because we have to BFS on it as well.
+                        q.append((r, c))
+                        visited.add((r, c))
+
+
+        # We want to visit every single position in the grid
+        for r in range(rows):
+            for c in range(cols):
+                # If we visit a 0, we don't have to do anything, but if we visit a 1, we have to traverse it and mark it as visited(it's done
+                # in the bfs() function)
+                if grid[r][c] == "1" and (r, c) not in visited:
+                    bfs(r, c)
+                    islands += 1
+
+        return islands
