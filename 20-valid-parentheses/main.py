@@ -25,3 +25,28 @@ class Solution:
 				stack.append(c)
 
 		return True if not stack else False
+
+
+# my solution
+class Solution2:
+	def isValid(self, s: str) -> bool:
+		stack = []
+		mapping = {
+			"(": ")",
+			"{": "}",
+			"[": "]"
+		}
+
+		for el in s:
+			if el in mapping:
+				stack.append(el)
+			else:
+				if not stack:
+					return False
+
+				last = stack.pop()
+
+				if mapping[last] != el:
+					return False
+
+		return len(stack) == 0
