@@ -1,13 +1,15 @@
 class Solution:
 	def isValid(self, s: str) -> bool:
 		stack = []
+
+		# note that the keys are CLOSING chars. This will make this easier.
 		closeToOpen = {
 			")": "(",
 			"]": "[",
 			"}": "{"
 		}
 
-		for c in str:
+		for c in s:
 
 			# check if this character is a closing char(the keys of closeToOpen is a closing char)
 			if c in closeToOpen:
