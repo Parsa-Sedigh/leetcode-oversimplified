@@ -15,3 +15,16 @@ class Solution:
                 counter += 1
 
         return len(els)
+
+    # neetcode
+    # T: O(n), M: (1)
+    def removeDuplicates2(self, nums: List[int]) -> int:
+        # What if the nums is an empty arr? Shouldn't we return 0? Well you're right but for some reason, leetcode accepts this code as it is!
+        l = 1
+
+        for r in range(1, len(nums)):
+            if nums[r] != nums[r - 1]:
+                nums[l] = nums[r]
+                l += 1
+
+        return l
