@@ -35,4 +35,5 @@ class Solution:
 		# if head happens to be the first node in the list, it would become the last one in the reversed list, so set it's next to None
 		head.next = None
 
+		# newHead is the head of the reversed linked list. It doesn't change as we go back up the call stack in recursion.
 		return newHead
