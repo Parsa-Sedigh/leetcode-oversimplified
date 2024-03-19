@@ -2,17 +2,17 @@ from typing import List
 
 
 class Solution:
-	def carFleet(self, target: int, position: List[int], speed: List[int]) -> int:
-		pair = [[p, s] for p, s in zip(position, speed)]  # this is called list comprehension in python
+    def search(self, nums: List[int], target: int) -> int:
+        l, r = 0, len(nums) - 1
 
-		# will tell us how many car fleets we have at the end
-		stack = []
+        while l <= r:
+            m = l + ((r - l) // 2)
 
-		# we want to iterate through it in reverse order, so use [::-1]
-		for p, s in sorted(pair)[::-1]: # reverse sorted order
-			stack.append((target - p) / s)
+            if nums[m] < target:
+                l = m + 1
+            elif nums[m] > target:
+                r = m - 1
+            else:
+                return m
 
-			if len(stack) >= 2 and stack[-1] <= stack[-2]:
-				stack.pop()
-
-		return len(stack)
+        return -1
