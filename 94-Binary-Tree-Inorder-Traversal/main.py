@@ -8,20 +8,42 @@ class TreeNode:
         self.left = left
         self.right = right
 
-
+# T: O(n)
+# M: O(h) - if unbalanced which is the worst case -> O(n)
 class Solution:
     def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         if not root: return []
 
-        nodes = []
+        res = []
 
         def inorder(root: TreeNode):
+            # base case
             if not root: return
 
             inorder(root.left)
-            nodes.append(root.val)
+            res.append(root.val)
             inorder(root.right)
 
         inorder(root)
 
-        return nodes
+        return res
+
+# iterative
+# T: O(n)
+# M: O(n)
+class Solution2:
+    def inorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
+        res = []
+        stack = []
+        cur = root
+
+        while cur or stack:
+            while cur:
+                stack.append(cur)
+                cur = cur.left
+                
+            cur = stack.pop()
+            res.append(cur.val)
+            cur = cur.right
+
+        return res
