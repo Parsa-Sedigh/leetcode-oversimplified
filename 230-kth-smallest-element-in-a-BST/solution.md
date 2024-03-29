@@ -1,4 +1,4 @@
-**Remember a BST by definition means that it's in order**. Meaning that for every node, all of the nodes in it's left subtree is gonna be rest
+**Remember a BST by definition means that it's in order**. Meaning that for every node, all of the nodes in it's left subtree is gonna be less
 than the current node and everything in it's right, is gonna be greater than the current node.
 
 ### In order traversal approach
