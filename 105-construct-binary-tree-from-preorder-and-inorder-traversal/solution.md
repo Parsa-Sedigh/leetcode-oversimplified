@@ -19,6 +19,11 @@ Note: The first value in preorder traversal is always going to be the root. But 
 
 Note: Every value in the traversal is guaranteed to be unique.
 
+Note: The roots are chosen from preorder arr and other values are chosen from inorder, except the root that we already chose, because it's
+gonna be in inorder as well, we don't want duplicates. So the nodes we choose from inorder don't have the
+mid value among them: `inorder[:mid]` and `inorder[mid + 1:]`. Because again, we have already chosen the root node from preorder which also exists
+in the inorder.
+
 You can create a helper function to pass the indices in the recursive calls, if you can't create sublists in the language you're using.
 
 Q: Why we skipped the first index in preorder[1:mid + 1] ?
