@@ -63,6 +63,12 @@ class Solution2:
             area = 1
 
             while q:
+                # Note: We could be going over all of the elements in the current q in one iteration of the while loop, but
+                # it doesn't matter, because eventually we will go over all of them. If this question had said: get the
+                # minimum time or minimum or ..., we had to go all of the elements of the q(snapshot manner) in one iteration of while loop.
+                # In other words, we had to do multi-source BFS, by having another loop inside the while loop by saying:
+                # `for i in range(len(q)):`
+
                 row, col = q.popleft()
                 directions = [[1, 0], [-1, 0], [0, 1], [0, -1]]
 
