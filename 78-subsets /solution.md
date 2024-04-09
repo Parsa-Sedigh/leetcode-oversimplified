@@ -19,7 +19,7 @@ So we must do brute-force. Let's do backtracking. This is pretty much the most e
 
 The decision tree:
 
-![](../img/78-1.png)
+![](78-1.png)
 
 The two `dfs(i + 1)` calls that we have although they look the same, they're gonna behave slightly differently. Because the first dfs() is gonna
 have a different subset when executing(the recursion calls) and the second dfs() is gonna have an empty subset given to it.
