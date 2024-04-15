@@ -62,5 +62,11 @@ This is like the fibonacci sequence.
 - Space: If we use an array of size n, it would be O(n). But is it needed to have an array with the size of input? No. Notice
 how each value depends on two values that come after it. So we don't need an entire arr, we just need two variables.
 
+Since this is bottom-up approach, at the last step(step = 5), if we start from step = 5, how many different ways we can reach
+the end? In one way. Also from previous step(n - 1), we can reach the end in 1 way.
+Now as we move backwards, now how many different ways we can reach the end from this step? Well this depends on two sub problems 
+that we already solved(which come after this current step). So we add the one and two together and assign the prev value of `one`
+to `two`.
+
 Now if we initialize two variables(`one` and `two`) for the values of last two func calls in the call stack, we need to compute `n - 1` values. We have to
 loop `n - 1` times and then our one variable arrives at 0, we return the result.
