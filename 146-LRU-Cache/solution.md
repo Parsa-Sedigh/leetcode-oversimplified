@@ -7,8 +7,11 @@ The size of the hashmap shouldn't exceed the capacity.
 As the key-value pair, it's better to make the value be a pointer to the node itself(a pointer to a Pair instance).
 So the key of the hashmap is the same key we get from the input and the value is a pointer to the node in the doubly linked list.
 
-We're gonna keep track of the most recent and least recent by having a left and right pointer. The left is for least recently used and
-the right one is for most recently used. We're gonna be swapping these two nodes. To keep the ordering of these, we need a doubly linked list.
+We're gonna keep track of the most recent and least recent by having a left and right pointer.
+
+**The left is for least recently used and the right one is for most recently used.**
+
+We're gonna be swapping these two nodes. To keep the ordering of these, we need a doubly linked list.
 Why doubly? Because remember we can easily look up where the value of the key is in the hashmap, but if we also want to reorder them quickly(which
 happens everytime we use a get()), we wanna make that node, the most recently used. But when doing a get(), the hashmap won't need to be updated
 to accommodate for the least recently used and most recently used. Because the values are gonna be pointers and they will point to the correct 

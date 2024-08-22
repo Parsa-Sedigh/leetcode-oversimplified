@@ -7,6 +7,7 @@ class Node:
 
 class LRUCache:
 
+	# Note: The first node is the least recently used node and last one is most recently used.
 	def __init__(self, capacity: int):
 		self.cap = capacity
 		self.cache = {} # map key to node
@@ -23,7 +24,7 @@ class LRUCache:
 		self.left.next, self.right.prev = self.right, self.left
 
 	# remove from doubly linked list
-	# Look at 146-1 img.
+	# Look at 146-1 img.  m nm
 	# Note: node is the middle node
 	def removeNode(self, node):
 		prev, nxt = node.prev, node.next
@@ -58,12 +59,14 @@ class LRUCache:
 
 	def put(self, key: int, value: int) -> None:
 		if key in self.cache:
+			# we don't need to do: self.insertNodeAtEnd(), because inserting is done at the next lines of this method.
 			self.removeNode(self.cache[key])
 
 		# with this, the value of the key in hashmap is a pointer to the new node(but this node is not in the linked list yet)
 		self.cache[key] = Node(key, value)
 
 		# we also need to insert the new node in the list
+		# Note: setting the prev and next fields of the new node is done at `insertNodeAtEnd()` method
 		self.insertNodeAtEnd(self.cache[key])
 
 		if len(self.cache) > self.cap:
