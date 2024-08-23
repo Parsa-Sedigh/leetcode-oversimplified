@@ -1,7 +1,41 @@
 from typing import List
 
-
+# brute force
 class Solution:
+	# T: O(n^3)
+	# M: O(1) - we don't consider the space required by output in space complexity. But if we did, in the worst case,
+	# the number of unique triplets can be quite large. Specifically, if all elements of nums are distinct and
+	# every triplet sums to zero, there can be O(n^3) triplets in the output.
+	# However, typically the number of such triplets is much smaller. In the worst case:
+	# - If n is the length of the input array, the maximum number of triplets is given by the number of combinations
+	# 	of n elements taken 3 at a time:
+	# - This is O(n^3) in the worst-case scenario.
+	def threeSum(self, nums: List[int]) -> List[List[int]]:
+		result = []
+
+		# Sort the array to make it easier to avoid duplicates later
+		nums.sort()
+
+		for i in range(len(nums)):
+			if i > 0 and nums[i] == nums[i - 1]:
+				continue
+
+			for j in range(i + 1, len(nums)):
+				if j > i + 1 and nums[j] == nums[j - 1]:
+					continue
+
+				for k in range(j + 1, len(nums)):
+					if k > j + 1 and nums[k] == nums[k - 1]:
+						continue
+
+					if nums[i] + nums[j] + nums[k] == 0:
+						result.append([nums[i], nums[j], nums[k]])
+
+		return result
+
+class Solution2:
+	# T: O()
+	# M: O()
 	def threeSum(self, nums: List[int]) -> List[List[int]]:
 		res = []
 
@@ -11,7 +45,7 @@ class Solution:
 		for i, a in enumerate(nums):
 			# i > 0 means this isn't the first value in the input array.
 			# Note: We don't want the same value as before as our possible first element of the result(a), so continue
-			# Note: If we don't put i > 0, we would get an out of range error
+			# Note: If we don't put i > 0, we would get an out of range error because of using nums[i - 1]
 			# Note: We shouldn't put this if block inside the while loop. Because in that case we could end up in an infinite loop inside
 			# the while loop, because by executing the `continue` statement, the `index` won't change and we will end up going into that
 			# if statement infinitely. Why index won't change? Because we're inside the while loop and we're doing the continue which won't
@@ -32,12 +66,12 @@ class Solution:
 					res.append([a, nums[l], nums[r]])
 					l += 1
 
-					# Let's say the nums is: [-2, -2, 0, 2, 2]. Let's say l is at 0 and r is at the end(let's imagine we're solving
+					# Let's say the nums is: [-2, -2, 0, 2, 2]. Let's say l is at index 0 and r is at the end(let's imagine we're solving
 					# two sum without having duplicates)After adding the first combination to res, our l gets to index 1.
-					# But our l gets to -2 again. So we want to shift l again. Now our sum is gonna be too big, because we're gonna
+					# But our l gets to -2 again. So we want to shift l again, to avoid duplicates. Now our sum is gonna be too big, because we're gonna
 					# be at 0 + 2. So then our while loop is gonna execute going into threeSum > 0: block and we're gonna shift
-					# r pointer to left. Notice how that r pointer is at 2 again as previously was, but we don't need to write
-					# a for loop for r pointer to make it non duplicate again! Notice how each value is only gonna have corresponding
+					# r pointer to left. Notice how that r pointer is at 2 again as previously was, but we don't need to write a
+					# for loop for r pointer to make it non duplicate again! Notice how each value is only gonna have corresponding
 					# value that it can sum equal to target which is 0. So we ONLY have to update one pointer(for example l) and then
 					# our first two conditions that check threeSum value will update the other pointer if necessary, by itself. We don't even
 					# have to worry about it.
