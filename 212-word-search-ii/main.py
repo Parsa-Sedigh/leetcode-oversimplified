@@ -95,6 +95,8 @@ class Solution2:
             word += board[r][c]
 
             if trie_node.word:
+                # Slight optimization: Once you found a word in the trie, you can remove that trie node IF IT'S A LEAF NODE in the trie, because
+                # we don't want to search for the same word twice.
                 res.add(word)
 
             # go into each 4 directions from current cell
