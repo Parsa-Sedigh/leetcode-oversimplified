@@ -1,5 +1,7 @@
 package main
 
+// T: O(n)
+// M: O(n)
 func twoSum(nums []int, target int) []int {
 	items := make(map[int]int)
 

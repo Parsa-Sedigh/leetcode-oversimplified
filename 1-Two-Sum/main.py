@@ -1,6 +1,7 @@
 from typing import List
 
-
+# T: O(n)
+# M: O(n)
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
         # We call this prevMap because it has every element that comes before the current element(every previous element is gonna be stored
