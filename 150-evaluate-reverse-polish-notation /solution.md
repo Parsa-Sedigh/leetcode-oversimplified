@@ -1,3 +1,8 @@
+To evaluate an RPN expression, you process the tokens from left to right:
+- When you encounter a number (operand), you "store" it.
+- When you encounter an operator (+, -, *, /), you apply it to the two most recently stored operands, compute the result, and
+store that result back.
+
 In question it says division should truncate towards zero. But in at least python the division operator(/) always rounds down which is not
 rounding towards zero necessarily because imagine if we had `-3/2` which results in -1.5 and then python rounds it down to **-2** but this is not
 what we want to do(we want to round towards zero). There's a trick in python to do this.
