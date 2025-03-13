@@ -20,3 +20,40 @@ So in the worst case, we're gonna go 2 times of the height of the tree. One for 
 replacing the nodes possibly multiple times(but at total, this step consists of one O(h)).
 
 T: O(2 * h) => O(h)
+
+### Recursion II
+When the node we wanna delete have both left & right subtrees:
+
+What happens to left subtree:
+
+- `root.left` is the entire left subtree of the node we’re deleting. All its values are less than root.val.
+- Originally, cur.left is None (because it’s the leftmost node). By setting cur.left = root.left, we attach the left subtree under cur.
+- This maintains the BST property: all nodes in cur.left (the old root.left) are less than cur.val, and cur remains in 
+the right subtree, where all values are greater than the deleted root.val.
+
+What happens to right subtree:
+
+- The right subtree (root.right) becomes the new root of this part of the tree. So it gets the place of the `root` that we deleted.
+This is achieved via returning root.right to the parent of `root`. So now the parent of `root` no longer points to `root`, instead
+it points to the right subtree of `root` which is what we want, we wanna exclude(remove) the `root`.
+- So after attaching root.left to cur.left, the variable res is set to root.right: `res = root.right`. Then, res is returned as the new root
+to it's parent.
+
+**Side note:** Since `cur` is a node within root.right (it’s the leftmost node of the right subtree), modifying 
+cur.left updates the structure of root.right. When we return root.right, it includes cur with the attached `root.left` subtree.
+
+### Why It Works
+- Why assign root.left to cur.left?
+  - We need to preserve the left subtree (`root.left`) because it contains valid BST nodes that are less than `root.val`. 
+  Attaching it to cur—the smallest node in the right subtree—works because cur has no left child, and all values in 
+  root.left are less than cur.val, keeping the BST order intact.
+- What happens to root.right?
+  - root.right isn’t lost—it becomes the new root of the subtree after deletion. Since cur is part of root.right, 
+  attaching root.left to cur.left modifies root.right in place. Returning root.right gives us the restructured tree.
+
+### Summary
+When deleting a node with both children:
+
+- The successor (`cur`) is the smallest node in the right subtree.
+- The left subtree (root.left) is attached to cur.left.
+- The right subtree (root.right), now including the attached left subtree, replaces the deleted node by returning it to the parent.
