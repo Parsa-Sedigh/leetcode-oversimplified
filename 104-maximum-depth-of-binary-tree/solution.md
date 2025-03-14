@@ -12,7 +12,7 @@ Note: When using recursion, first think about the base case.
 
 time complexity: O(n) - since we're traversing the entire tree
 
-memory complexity: O(h) - h is the height of the tree, which in the worst case(**inbalanced tree**) is O(n)
+memory complexity: O(h) - h is the height of the tree, which in the worst case(**unbalanced tree**) is O(n)
 
 ### BFS:
 There's not a lot of benefits using BFS for this problem comparing to just doing DFS recursively.
