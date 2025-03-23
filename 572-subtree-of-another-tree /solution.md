@@ -2,7 +2,7 @@ Brute force:
 
 Visit every single node and then check (starting from the root), does the tree starting from the current root, match the subRoot tree?
 
-In other words, for every single node in the first tree, compare the tree starting from the current root to the entire second tree.
+In other words, **for every single node in the first tree, compare the tree starting from the current root to the entire second tree.**
 
 In the worst case, for every single node in the first tree, we have to go through every single node in the second tree.
 
