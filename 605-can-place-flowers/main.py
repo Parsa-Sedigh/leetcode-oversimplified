@@ -45,6 +45,9 @@ class Solution2:
                 # NOTE: Why dividing by 2?
                 # Because after accounting for one empty plot for spacing, the remaining empty plots are divided into groups of 2.
                 # Each group of 2 plots can hold one flower.
+
+                # NOTE: We didn't use // here, because it would round down the negative numbers not towards 0. We wanna round towards 0 which is why
+                # we used int() approach.
                 n -= int((empty - 1) / 2)
                 empty = 0
             else:

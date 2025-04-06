@@ -39,15 +39,14 @@ class Solution2:
     def maxDepth(self, root: Optional[TreeNode]) -> int:
         # You can get rid of this check if you set res to 0 initially. If res is 0 initially, yeah the while loop will be executed once,
         # but we won't go into the if block and therefore the res will stay 0 and we return 0 in that case.
-        # if not root:
-        #     return 0
+        if not root:
+            return 0
 
         stack = [[root, 1]]
-        max_depth = 0
+        max_depth = 1
 
         while stack:
             node, depth = stack.pop()
-            max_depth = depth
 
             # yeah, in this approach it's possible that the node could be null, so we need to check for it
             if node:

@@ -6,6 +6,11 @@ class Solution1:
 	def findKthLargest(self, nums: List[int], k: int) -> int:
 		heapq.heapify(nums)
 
+		# Note: We can't just return nums[len(nums) - k] because it's not that simple with a heap. When we do heappop(), it has
+		# some logic, so it's not that simple to just return the len(nums) - k index. We need to pop elements until we arrive to
+		# the (len(nums) - k)th element.
+		#
+		# Note: We should pop (len(nums) - k) times not k times. Because we have a min heap not a max heap.
 		while len(nums) > k:
 			heapq.heappop(nums)
 
@@ -34,9 +39,9 @@ class Solution2:
 class Solution3:
 	# `partition` sorts the array based on the current pivot with respect to the boundaries formed by left and right
 	# pointers and returns the index of the pivot after swapping it with the fill pointer. The fill pointer points to
-	# the last element that was swapped because it was less than the pivot. Note: Since everytime the subarray that
-	# we're looking at, changes, we pass in two variables, the l and r pointer which tell us on which portion of the
-	# arr are we currently running quickselect on?
+	# the last element that was swapped because it was less than the pivot.
+	# Note: Since everytime the subarray that we're looking at, changes, we pass in two variables, the
+	# l and r pointer which tell us on which portion of the arr are we currently running quickselect on?
 	def partition(self, nums: List[int], left: int, right: int) -> int:
 		pivot, fill = nums[right], left
 
@@ -51,6 +56,7 @@ class Solution3:
 
 	def findKthLargest(self, nums: List[int], k: int) -> int:
 		# We want k as an index. So re-assign it to len(nums) - k
+		# We're gonna sort in asc order, so k would be at the end of the array minus k . Which means `len(nums) - k`.
 		k = len(nums) - k
 		left, right = 0, len(nums) - 1
 

@@ -2,7 +2,7 @@ from typing import List
 
 
 class Solution:
-    # T: O(n) . n is total number of chars in list of words
+    # T: O(n). n is total number of chars in list of words
     """
     @param: strs: a list of strings
     @return: encodes a list of strings to a single string.

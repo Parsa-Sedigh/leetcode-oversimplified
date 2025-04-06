@@ -27,7 +27,7 @@ technically still O(1) . This is why we have O(26 * n) as time complexity of ove
 We're gonna use sliding window technique, so we're gonna take our window starting from the beginning, expanding it as long as the condition is
 valid, if the condition is not valid, then we're gonna take our left pointer and shift it until the window becomes valid once again.
 
-`Time: O(26 * n)`
+`Time: O(26 * n)`. n is because of the for loop and 26 is because of max(count.values()) over hashmap.
 
 ---
 
@@ -52,6 +52,10 @@ or if it decreases, our res is never going to change. Because we only change the
 way the `length - maxF <= k` condition is going to be true. So if our maxF is downgraded(l is moved forward), we don't have to actually
 update it, we don't need to look through the entire hashmap to find the new maxF. But if we increase the maxF, then we do want to update
 our maxF and increase it and it's obviously `O(1)`.
+
+So not decreasing maxF doesn’t affect correctness because the algorithm ensures res reflects the longest valid window encountered during
+the process. While an outdated maxF may lead to insufficient shrinking, the maximum res is set when the window is valid, and 
+subsequent steps don’t incorrectly inflate it.
 
 `Time: O(n)`
 

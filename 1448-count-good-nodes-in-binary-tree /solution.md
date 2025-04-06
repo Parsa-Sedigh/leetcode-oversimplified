@@ -1,7 +1,7 @@
 Time complexity: O(n)
 
 Space complexity: O(log n) - in other words O(h). The height of the tree technically could be greater than log n . It could be as big
-as `n` in inbalanced tree.
+as `n` in unbalanced tree.
 
 We're gonna be using preorder DFS. Meaning when we recursively run DFS, we're gonna process each node before we traverse recursively the left
 subtree and recursively the right subtree.

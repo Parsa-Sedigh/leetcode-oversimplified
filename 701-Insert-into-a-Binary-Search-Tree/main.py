@@ -7,6 +7,9 @@ class TreeNode:
         self.left = left
         self.right = right
 
+# recursive
+# T: O(h) where if tree is balanced, is O(log(n)), where n is number of nodes, if unbalanced, it's O(n)
+# M: O(h)
 class Solution:
     def insertIntoBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
         # First edge case: If we have an empty tree, create a new tree node and return it. This is also the base case if the
@@ -22,6 +25,8 @@ class Solution:
         return root
 
 # Iterative
+# T: O(h)
+# M: O(1)
 class Solution2:
     def insertIntoBST(self, root: Optional[TreeNode], val: int) -> Optional[TreeNode]:
         # First edge case: If we have an empty tree, create a new tree node and return it. This is also the base case if the

@@ -13,6 +13,14 @@ We're doing dfs on left and right, that means we go through every single node in
 In other words, since we're running a recursive dfs on every single subtree(each time we ask the question: is this subtree balanced, it will
 be O(n)), it will be `O(n^2)` .
 
+#### Time and space
+
+We have two sets of recursive calls here, 
+
+while `isBalanced` calls height on the left and right subtrees before recursing, the height calls complete and 
+their stack space is released before the recursive isBalanced calls are made. Thus, the maximum stack depth is 
+determined by the deeper of the two recursive processes, which is still `h`.
+
 ### better approach
 Can we do better than that? Is there any repeated work? 
 

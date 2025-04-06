@@ -9,7 +9,7 @@ class TreeNode:
         self.right = right
 
 
-# my approach
+# 1. Depth First Search
 # T: O(n)
 # M: O(h)
 class Solution:

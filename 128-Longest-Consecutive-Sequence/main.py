@@ -12,6 +12,7 @@ class Solution:
 		for n in nums:
 			# check if it's the start of a sequence.
 			# If current number doesn't have a left neighbour, that means it's start of a sequence
+			# Only start the inner loop IF `n` is start of a sequence. Otherwise, we would skip n.
 			if (n - 1) not in numSet:
 				length = 0
 

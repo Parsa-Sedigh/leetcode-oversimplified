@@ -26,8 +26,9 @@ class Solution:
 		# index 1 until mid(mid + 1 is exclusive, so it's gonna be until `mid`).
 		# Q: Why preorder[1:mid + 1]?
 		# A: Because we have chose the first one as the root of the current tree. Now all nodes in preorder up until mid(including mid)
-		# should be the roots in the left subtree. And all other nodes after mid in the preorder, should be the roots in the right subtree,
-		# hence the preorder[mid + 1:].
+		# should be the roots in the left subtree. Note that mid is inclusive, because we haven't chosen the value at mid yet, we chose the
+		# first value to be the root in the preorder, hence we didn't include it(we started at 1).
+		# And all other nodes after mid in the preorder, should be the roots in the right subtree, hence the preorder[mid + 1:].
 		# Also, the nodes of left subtree should be chosen from the inorder and they're up until mid(not mid itself), because mid itself
 		# is the root. Therefore: inorder[:mid]
 		root.left = self.buildTree(preorder[1:mid + 1], inorder[:mid])

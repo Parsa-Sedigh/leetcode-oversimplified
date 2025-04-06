@@ -1,3 +1,9 @@
+class ListNode:
+	def __int__(self, val=0, next=None):
+		self.val = val
+		self.next = next
+
+
 class Solution:
 	def mergeTwoLists(self, l1: ListNode, l2: ListNode) -> ListNode:
 		# dummy holds the entire result list(which means it points to the head of the result list). We need another pointer for traversing

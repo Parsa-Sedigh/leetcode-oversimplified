@@ -5,7 +5,8 @@ class TreeNode:
 		self.left = None
 		self.right = None
 
-
+# T: O(log(n))
+# M: O(1)
 class Solution:
 	def lowestCommonAncestor(self, root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
 		cur = root
@@ -16,7 +17,9 @@ class Solution:
 			if p.val > cur.val and q.val > cur.val:
 				cur = cur.right
 			elif p.val < cur.val and q.val < cur.val:
+				cur = cur.left
 
-			# this case if for when a split occurs, or if we end up actually finding one of the values(p or q)
+			# this case if for when a split occurs, or if we end up actually finding one of the values(p or q). We're guaranteed that
+			# this is gonna execute, so we don't have a `return` outside of this loop.
 			else:
 				return cur

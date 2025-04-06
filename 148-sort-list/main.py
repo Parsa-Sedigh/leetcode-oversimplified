@@ -47,6 +47,8 @@ class Solution:
 
         return self.merge(left, right)
 
+    # T: O(n)
+    # M: O(1)
     def getMid(self, head: ListNode) -> ListNode:
         # with slow and fast pointer technique, when fast goes at the end of the LL or out of bounds, slow will
         # always point to the middle node.
@@ -58,6 +60,8 @@ class Solution:
 
         return slow
 
+    # T: O(n)
+    # M: O(1)
     # merge assumes left and right linked lists are already sorted. It's gonna merge these two LLs into one sorted LL.
     def merge(self, left: ListNode, right: ListNode) -> ListNode:
         # to avoid edge cases

@@ -40,6 +40,6 @@ to them.
 The key here is that we're going bottom up. We're finding the diameter from the bottom nodes and then working our way up to the root, that's what
 allowing us to cut out some of the repeated work.
 
-Note: The space complexity is `O(h)` and h which is the height of the tree, if our tree is balanced, is logn, but if the tree is inbalanced,
+Note: The space complexity is `O(h)` and h which is the height of the tree, if our tree is balanced, is logn, but if the tree is unbalanced,
 is gonna be `O(n)`. So space complexity(since it's recursive here, means the amount of calls we're gonna have on the callstack), at worst case
 is `O(n)`.

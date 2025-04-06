@@ -24,7 +24,7 @@ class Solution:
 
 # 2. Iteration
 # T: O(n * m) - we go through every el in the input and for each one, we're going through each char
-# M: O(n)
+# M: O(n) - because in worst case, every email could be unique
 class Solution2:
     def numUniqueEmails(self, emails: List[str]) -> int:
         unique = set()

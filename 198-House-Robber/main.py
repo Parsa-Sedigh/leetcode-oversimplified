@@ -20,6 +20,8 @@ class Solution:
 
 			res += nums[i]
 
+			# We need to choose the next houses that we can rob from. Since we can't rob the adjacent houses, we can either
+			# rob the i + 2 or i + 3.
 			dfs(i + 2, res)
 			dfs(i + 3, res)
 

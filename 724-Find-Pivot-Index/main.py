@@ -1,3 +1,15 @@
+from typing import List
+
+
+# 1. Brute force
+# Go through each el. For each el, calculate it's left and right sum and compare them.
+
+# T: O(n^2)
+# M: O(1)
+class Solution:
+    def pivotIndex(self, nums: List[int]) -> int:
+
+
 # T: O(n)
 # M: O(1)
 class Solution:

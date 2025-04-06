@@ -1,6 +1,6 @@
 It doesn't even make sense to solve this with two queues!
 
-When using queues for implementing stacks, we can push values in O(1), but we can't pop in O(1). It's gonna be O(n).
+**When using queues for implementing stacks, we can push values in O(1), but we can't pop in O(1). It's gonna be O(n).**
 
 So popping is gonna be O(n) if we tried to implement a stack with queues.
 

@@ -78,6 +78,9 @@ class Solution3:
                 stack.append(cur)
                 cur = cur.right
 
+            # At this point, we've traverse the right subtree of `cur`. So we need to traverse it's left subtree, so in the next line,
+            # set cur to cur.left.
+            # NOTE: yeah first right then left, because we're gonna reverse the result before ending the algo.
             cur = stack.pop()
             cur = cur.left
 
@@ -88,3 +91,4 @@ class Solution3:
 # 4. Morris Traversal
 # T: O(n)
 # M: if we don't consider output arr as extra memory -> O(1). Otherwise: O(n)
+# TODO
