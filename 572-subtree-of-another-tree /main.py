@@ -12,6 +12,25 @@ class TreeNode:
 # M: O(S + T)
 
 # S: num of nodes in s and T: num of nodes in t
+
+###
+
+# m: number of nodes in `s` tree
+# H_s: height of the `s` tree
+
+# T: O(m * n)
+# Number of nodes visited in s: m.
+# Work per node: O(n) due to the is_same_tree call.
+# So total time is: O(m * n)
+
+# M: O(H_s + H_t)
+
+# overall memory: In worst case, we traverse a lot of s(would be O(H_s)) and then go through is_same_tree() func which would be
+# O(min(H_s, H_t)).
+# In other words: The total recursion depth occurs when isSubtree is at its deepest level (depth h_s), and from there,
+# it calls is_same_tree, which adds up to h_t.
+# Thus, the total depth can be O(h_s + h_t) in the worst case.
+
 class Solution:
     def isSubtree(self, s: TreeNode, t: TreeNode) -> bool:
         # NOTE: this function is gonna be recursive, so let's start with the base cases
@@ -35,10 +54,22 @@ class Solution:
         return (self.isSubtree(s.left, t) or
                 self.isSubtree(s.right, t))
 
+    # T: O(n)
+    # Technically it's O(min(m, n)), but since we're checking if t is subtree of s, at most, it processes up to the number of nodes in t.
+    # So we say it's O(n)
+
+    # M: O(min(H_s, H_t))
+
+    # - If we were only considering this func itself: O(min(H_s, H_t)). Why not O(H_s + H_t)? Because we're traversing both
+    #   trees simultaneously. Now you might say: Well since we're traversing both at the same time, the call stack is having
+    #   calls from both s & t, so the memory is: O(H_s + H_t).
+    #   BUT note that this func stops when the smaller tree is traversed. So all the nodes of the other tree won't contribute to the
+    #   memory complexity. So it's still min(H_s, H_t)
+
     # there are 3 conditions in this function:
     # - if both trees are empty
-    # - if both trees are not empty
     # - if one of the trees is empty
+    # - if both trees are not empty
     def is_same_tree(self, s: Optional[TreeNode], t: Optional[TreeNode]) -> bool:
         # base case 1
         if not s and not t:
