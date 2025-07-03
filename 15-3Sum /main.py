@@ -1,7 +1,8 @@
+from collections import defaultdict
 from typing import List
 
 
-# brute force
+# 1. brute force
 # T: O(n^3)
 # M: O(1)
 # We don't consider the space required by output in space complexity. But if we did, in the worst case,
@@ -23,6 +24,11 @@ class Solution:
                 continue
 
             for j in range(i + 1, len(nums)):
+                # Skip duplicate nums[j] vals.
+                # NOTE: Why we didn't say: j >= i + 1? Because we don't want to skip the next el of `i`, it could be a valid triplet.
+                # For example: [-2, -2, 0, 4]. A valid triplet is [-2, -2, 4]. But if we used j >= i + 1 and nums[j] == nums[j-1],
+                # we would skip j = 1 which is wrong. But if we had sth like: [-2, -2, -2, 0, 4], in j = 2 should be skipped because
+                # it would form a duplicate triplet.
                 if j > i + 1 and nums[j] == nums[j - 1]:
                     continue
 
@@ -36,7 +42,74 @@ class Solution:
         return result
 
 
-# We're checking for duplicates in two places: one for i and one for l
+# 2. Brute Force II - using hashset for res
+# T: O(n^3)
+# M: O(1)
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        res = set()
+
+        for i in range(len(nums)):
+            for j in range(i + 1, len(nums)):
+                for k in range(j + 1, len(nums)):
+                    if nums[i] + nums[j] + nums[k] == 0:
+                        res.add((nums[i], nums[j], nums[k]))
+
+        return [list(el) for el in res]
+
+
+# 3. Hash Map
+
+# NOTE: We must ensure that combinations like [1, -1, 0] and another [1, -1, 0] derived from different indices
+# but with the same values are not repeated.
+
+# T: O(n^2)
+# M: O(n)
+class Solution:
+    def threeSum(self, nums: List[int]) -> List[List[int]]:
+        nums.sort()
+
+        count = defaultdict(int)
+        res = []
+
+        # build the count hashmap
+        for i in range(len(nums)):
+            count[nums[i]] += 1
+
+        for i in range(len(nums)):
+            # Decrement the count of the current number since we're using it
+            count[nums[i]] -= 1
+
+            # NOTE: Ensures that if the current nums[i] is the same as the previous nums[i-1],
+            # the iteration is skipped(except for the first occurrence at i=0).
+
+            # NOTE: This prevents starting triplets with the same first number multiple times.
+            if i > 0 and nums[i - 1] == nums[i]:
+                continue
+
+            for j in range(i + 1, len(nums)):
+                count[nums[j]] -= 1
+
+                # This avoids repeating the second number within the same i loop().
+                if j > i + 1 and nums[j - 1] == nums[j]:
+                    continue
+
+                # We're looking for a num that is equal to the negative sum of two other ones, so that the sum of all three is 0.
+                target = -(nums[i] + nums[j])
+                if count[target] > 0:
+                    res.append([nums[i], nums[j], target])
+
+            # Restore the counts of all nums[j] after processing them for the current i
+            for j in range(i + 1, len(nums)):
+                count[nums[j]] += 1
+
+        return res
+
+
+# 4. two-pointer
+
+# NOTE: We're checking for duplicates in two places: one for i and one for l
+
 # T: O(n^2)
 # M: O(n) - because of space consumed by sort()
 class Solution2:
@@ -47,11 +120,15 @@ class Solution2:
 
         # We want to use each number in the input array as a possible first value, so we iterate through every element in the input array:
         for i, a in enumerate(nums):
-            # i > 0 means this isn't the first value in the input array.
-            # Note: We don't want the same value as before as our possible first element of the result(a), so continue.
+            # NOTE: i > 0 means this isn't the first value in the input array.
+
+            # NOTE: We don't want the same value as before as our possible first element of the result(a), so continue.
             # By moving `i` forward until a new val, `l` wouldn't be a duplicate as well. In other words,
             # we should move `i` forward in case of encountering a duplicate val regardless what happened in while loop, because the
             # while loop doesn't update `i`, and `l` is calculated based on i(it's one index ahead).
+
+            # NOTE: So if we found a triplet in last iteration and the next `i` points to the same val,
+            # we would have all of i, l and r pointing to same vals(`i` wasn't moved, `l` is based on `i` and `r` is always at the end).
 
             # Note: If we don't put i > 0, we would get an out of range error because of using nums[i - 1]
 
@@ -93,4 +170,28 @@ class Solution2:
                     while nums[l] == nums[l - 1] and l < r:
                         l += 1
 
+        return res
+
+
+########################################
+
+# 1. two-pointer
+# If we asked to return all triplets
+# T: O(n^3)
+# M: O(n) - because of space consumed by sort()
+class Solution:
+    def threeSum(self, heights: List[int]) -> List[List[int]]:
+        res = []
+        heights.sort()  # Sort the array in ascending order
+        n = len(heights)
+
+        # Iterate over all possible i, j, k where i < j < k
+        for i in range(n - 2):
+            for j in range(i + 1, n - 1):
+                for k in range(j + 1, n):
+                    if heights[i] + heights[j] > heights[k]:
+                        res.append([heights[i], heights[j], heights[k]])
+                    else:
+                        # Since array is sorted, larger k will also fail, so there's no need to test next indexes of k
+                        break
         return res

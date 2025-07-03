@@ -3,7 +3,7 @@ The input array can have duplicates. One problem is we can not have duplicates i
 ## Brute force way:
 We need 3 numbers so we're gonna have 3 loops. Get every single combination of three numbers.
 
-We don't want to have duplicate triplets. In order to do this, we don't want the same element in the same position of a triplet. Because
+We don't want to have duplicate triplets. In order to do this, we don't want the same element for `i` in the same position of a triplet. Because
 then if there are some numbers after that element in input array, we could potentially have duplicates.
 For example if we had -3 in the first position of a triplet before and now we encountered -3 again for that same position, we should skip it.
 
