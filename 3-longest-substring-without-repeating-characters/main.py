@@ -39,12 +39,13 @@ class Solution2:
         l = 0
 
         for r in range(len(s)):
-
+            # Before adding s[r] to charSet, first we need to make sure it wouldn't make our window invalid:
             # keep doing this while that duplicate remains in charSet
             while s[r] in charSet:
                 charSet.remove(s[l])
                 l += 1
 
+            # At this point, our window is valid, so we can add s[r] to the set and calc the cur result.
             # after removing all duplicates, add rightmost character to set
             charSet.add(s[r])
             res = max(res, r - l + 1)
