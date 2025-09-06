@@ -27,7 +27,9 @@ class Solution:
 # M: O(1)
 class Solution:
     def moveZeroes(self, nums: List[int]) -> None:
+        # keeps track of the position where the next non-zero element should be placed
         l = 0
+        # After this loop is done, all non-zero els are at their right place. Then we just need to place the zeroes at the end.
         for r in range(len(nums)):
             if nums[r] != 0:
                 nums[l] = nums[r]
