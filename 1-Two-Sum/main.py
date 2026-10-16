@@ -17,9 +17,12 @@ class Solution:
 
 # Sorting
 # T: O(n * log(n))
-# M: O(1)
+# M: O(n)
 class Solution2:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
+        # IMPORTANT:
+        # We need to store the original index of elements by going through nums once. Since after sorting, the places of elements gonna change.
+        # M: O(n) - we're copying the nums list
         A = []
 
         for i, num in enumerate(nums):
@@ -33,6 +36,7 @@ class Solution2:
             # is slow and also again(which also cloud yield the wrong result).
             A.append([num, i])
 
+        # T: O(n * log(n))
         A.sort()
 
         print(A)
@@ -53,7 +57,7 @@ class Solution2:
             else:
                 j -= 1
 
-            return []
+        return []
 
 
 # 3. Hash Map (Two Pass)
@@ -86,6 +90,9 @@ class Solution4:
 
         for i, n in enumerate(nums):
             diff = target - n
+
+            # LOOK BACK, THEN WRITE: check before insert, or [3,3] matches itself. Needing an `i != idx` guard = inserted too early.
+            # Same rule for any one-pass "seen before?" map (560, 219, 3).
 
             # we have put this check BEFORE inserting n into the hashmap. Because otherwise, if we insert into hashmap and THEN check,
             # we can get wrong answer. Why? Because we could potentially consider the current element twice! For example:
